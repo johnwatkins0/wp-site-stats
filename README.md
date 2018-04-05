@@ -1,6 +1,6 @@
-# wp-site stats
+# wp-site-stats
 
-A WordPress plugin providing a frontend widget showing stats about sites in a multisite network. It also works with a single site in a single-site installation. 
+A WordPress plugin providing a frontend widget showing stats about sites in a multisite network. It also works in a single-site installation. 
 
 Note: This plugin has only been tested in a *subdirectory* WordPress multisite installation. It may not be ready for a subdomain installation.
 
@@ -23,7 +23,7 @@ A comma-separated list of network site IDs to exclude.
 
 ### Widget
 
-The plugin provides a "Sites Stats" widget available to drop into a any widgetized area. Note: In a widgetized area with a narrow width (such as a sidebar), the widget's display might not be optimal.
+The plugin provides a "Sites Stats" widget available to drop into any widgetized area. Note: In a widgetized area with a narrow width (such as a sidebar), the widget's display might not be optimal.
 
 ### WordPress 5.0 block (Gutenberg)
 
