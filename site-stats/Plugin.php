@@ -52,6 +52,18 @@ class Plugin {
 			self::VERSION,
 			true
 		);
+
+		wp_register_style(
+			self::TEXT_DOMAIN . '-editor',
+			$dist . self::TEXT_DOMAIN . "-editor$min.css",
+			[ 'wp-edit-blocks' ]
+		);
+
+		wp_register_script(
+			self::TEXT_DOMAIN . '-editor',
+			$dist . self::TEXT_DOMAIN . "-editor$min.js",
+			[ 'wp-blocks', 'wp-element' ]
+		);
 	}
 
 	/**
@@ -110,12 +122,6 @@ class Plugin {
 	 * @return string The URL.
 	 */
 	public static function get_dist_directory() {
-		static $dist;
-
-		if ( ! empty( $dist ) ) {
-			return $dist;
-		}
-
 		/**
 		 * Filters the URL location of the /dist directory.
 		 *
@@ -152,21 +158,6 @@ class Plugin {
 		if ( ! function_exists( 'register_block_type' ) ) {
 			return;
 		}
-
-		$min  = self::PROD === true ? '.min' : '';
-		$dist = self::get_dist_directory();
-
-		wp_register_style(
-			self::TEXT_DOMAIN . '-editor',
-			$dist . self::TEXT_DOMAIN . "-editor$min.css",
-			[ 'wp-edit-blocks' ]
-		);
-
-		wp_register_script(
-			self::TEXT_DOMAIN . '-editor',
-			$dist . self::TEXT_DOMAIN . "-editor$min.js",
-			[ 'wp-blocks', 'wp-element' ]
-		);
 
 		register_block_type(
 			self::VENDOR . '/' . self::TEXT_DOMAIN,
