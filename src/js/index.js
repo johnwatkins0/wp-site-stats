@@ -53,8 +53,6 @@ const start = async( appRoot ) => {
 		return;
 	}
 
-	console.log( sites );
-
 	render(
 		<Provider sites={sites} />,
 		appRoot
