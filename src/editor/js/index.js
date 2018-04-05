@@ -1,5 +1,3 @@
-import App from '../../js/App';
-
 const { registerBlockType, InspectorControls } = wp.blocks;
 
 registerBlockType( 'johnwatkins/site-stats', {

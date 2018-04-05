@@ -38,38 +38,6 @@ const getErrorFetchMock = () => () => new Promise( ( resolve, reject ) => {
 });
 
 describe( 'effects', () => {
-	describe( 'START_FETCHING_SITES', () => {
-		it( 'should fetch and receive data.', async() => {
-			const fetchMock = getFetchMock( sites );
-			set( global, 'fetch', fetchMock );
-			set( global, 'wpApiSettings', {});
-
-			const dispatch = jest.fn();
-			effects.START_FETCHING_SITES({}, { dispatch });
-
-			const response = await fetchMock();
-			const receivedSites = await response.json();
-
-			expect( dispatch )
-				.toHaveBeenCalledWith( receiveSites( receivedSites ) );
-		});
-	});
-
-	describe( 'RECEIVE_SITES', () => {
-		const dispatch = jest.fn();
-
-		effects.RECEIVE_SITES(
-			{},
-			{
-				getState: () => ({ sites }),
-				dispatch
-			}
-		);
-
-		expect( dispatch )
-			.toHaveBeenCalledWith( setActiveSiteId( sites[0].id ) );
-	}),
-
 	describe( 'SET_ACTIVE_SITE_ID', () => {
 		it( 'initiates refetching of data', () => {
 			const dispatch = jest.fn();

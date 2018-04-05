@@ -1,6 +1,4 @@
 import {
-	fetchSites,
-	receiveSites,
 	setActiveSiteId,
 	fetchSiteData,
 	fetchSiteDataFromBackupEndpoint,
@@ -9,19 +7,6 @@ import {
 
 import sites from '../../test-data/sites.json';
 import activeSite from '../../test-data/activeSite.json';
-
-test( 'fetchSites action', () => {
-	expect( fetchSites() ).toMatchObject({
-		type: 'START_FETCHING_SITES'
-	});
-});
-
-test( 'receiveSites action', () => {
-	expect( receiveSites( sites ) ).toMatchObject({
-		type: 'RECEIVE_SITES',
-		sites
-	});
-});
 
 test( 'setActiveSiteId action', () => {
 	expect( setActiveSiteId( 55 ) ).toMatchObject({

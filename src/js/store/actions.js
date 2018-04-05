@@ -1,25 +1,4 @@
 /**
- * Returns an action object indicating the sites are being fetched.
- *
- * @return {Object} An action object.
- */
-export const fetchSites = ( excludedSites ) => ({
-	type: 'START_FETCHING_SITES',
-	excludedSites
-});
-
-/**
- * Returns an action object indicating sites have been recieved.
- *
- * @param {array} sites An array of site objects.
- * @return {Object} An action object.
- */
-export const receiveSites = ( sites ) => ({
-	type: 'RECEIVE_SITES',
-	sites
-});
-
-/**
  * Returns an action object indicating an active site ID is being set.
  *
  * @param {number} siteId A site ID.

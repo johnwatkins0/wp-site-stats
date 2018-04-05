@@ -156,8 +156,8 @@ exports[`MainPane component 1`] = `
         href="http://wpmu/my-site/2018/04/02/hello-world/#comment-1"
       >
         A WordPress Commenter 
-        on April 2, 2018
-						at 2:29 p.m.
+					on April 2, 2018
+					at 2:29 p.m.
       </a>
     </div>
   </section>

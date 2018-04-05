@@ -19,33 +19,6 @@ describe( 'reducer', () => {
 		).toMatchObject({});
 	});
 
-	it( 'handles START_FETCHING_SITES', () => {
-		expect(
-			reducer(
-				{ fetchingSites: null },
-				{ type: 'START_FETCHING_SITES' }
-			)
-		).toMatchObject({ fetchingSites: true });
-	});
-
-	it( 'handles RECEIVE_SITES', () => {
-		expect(
-			reducer(
-				{
-					fetchingSites: true,
-					sites: null
-				},
-				{
-					type: 'RECEIVE_SITES',
-					sites
-				}
-			)
-		).toMatchObject({
-			fetchingSites: false,
-			sites
-		});
-	});
-
 	it( 'handles SET_ACTIVE_SITE_ID', () => {
 		expect(
 			reducer(

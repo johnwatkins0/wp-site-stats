@@ -1,28 +1,27 @@
-import React, { Component, createContext } from 'react';
+import React from 'react';
+import get from 'lodash.get';
 
 import SiteStats from './SiteStats';
 
-import { fetchSites, setRefreshTimer } from './store/actions';
+import { setActiveSiteId, setRefreshTimer } from './store/actions';
 import effects from './store/effects';
 import reducer from './store/reducer';
+import { REFRESH_SECONDS } from './constants';
 
-export const REFRESH_SECONDS = 60;
-const { Provider, Consumer } = createContext();
+const Context = React.createContext();
 
-class App extends Component {
+class Provider extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			loading: true,
-			sites: [],
-			secondsToRefresh: REFRESH_SECONDS
+			sites: props.sites
 		};
 		this.dispatch = this.dispatch.bind( this );
 		this.tick = this.tick.bind( this );
 	}
 
 	componentDidMount() {
-		this.dispatch( fetchSites( this.props.excludedSites ) );
+		this.dispatch( setActiveSiteId( this.props.sites[0].id ) );
 		this.startTicker();
 	}
 
@@ -54,8 +53,14 @@ class App extends Component {
 	}
 
 	tick() {
+		const secondsToRefresh = get(
+			this,
+			[ 'state', 'secondsToRefresh' ],
+			REFRESH_SECONDS + 1
+		);
+
 		this.dispatch(
-			setRefreshTimer( this.state.secondsToRefresh - 1 )
+			setRefreshTimer( secondsToRefresh - 1 )
 		);
 	}
 
@@ -67,18 +72,18 @@ class App extends Component {
 
 	render() {
 		return (
-			<Provider value={this.state}>
-				<Consumer>
+			<Context.Provider value={this.state}>
+				<Context.Consumer>
 					{( state ) => (
 						<SiteStats
 							state={state}
 							dispatch={this.dispatch}
 						/>
 					)}
-				</Consumer>
-			</Provider>
+				</Context.Consumer>
+			</Context.Provider>
 		);
 	}
 }
 
-export default App;
+export default Provider;

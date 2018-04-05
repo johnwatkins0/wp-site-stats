@@ -1,4 +1,4 @@
-import { REFRESH_SECONDS } from '../App';
+import { REFRESH_SECONDS } from '../constants';
 
 /**
  * Reducer handling all changes to app state.
@@ -9,21 +9,6 @@ import { REFRESH_SECONDS } from '../App';
  */
 function reducer( state = {}, action = {}) {
 	switch ( action.type ) {
-		case 'START_FETCHING_SITES': {
-			return {
-				...state,
-				fetchingSites: true
-			};
-		}
-
-		case 'RECEIVE_SITES': {
-			return {
-				...state,
-				fetchingSites: false,
-				sites: action.sites
-			};
-		}
-
 		case 'SET_ACTIVE_SITE_ID': {
 			return {
 				...state,

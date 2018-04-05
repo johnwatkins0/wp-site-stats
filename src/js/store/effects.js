@@ -1,7 +1,6 @@
 import get from 'lodash.get';
 
 import {
-	receiveSites,
 	setActiveSiteId,
 	fetchSiteData,
 	receiveSiteData,
@@ -19,34 +18,26 @@ import {
 	getSitesWithNoSelfEndpoint,
 	siteHasNoSelfEndpoint
 } from './selectors';
-
-const SITES_REST_PATH = 'johnwatkins/v1/site-stats/';
+import { SITES_REST_PATH } from '../constants';
 
 const effects = {
-	START_FETCHING_SITES: async( action, { dispatch }) => {
-		const excludeParam = action.excludedSites ?
-			`?exclude=${action.excludedSites}` :
-			'';
-		const root = get( global, [ 'wpApiSettings', 'root' ], false );
-		const response = await fetch( `${root}${SITES_REST_PATH}${excludeParam}` );
-		const sites = await response.json();
-		dispatch( receiveSites( sites ) );
-	},
 
-	// Set the initial active site to the first in the list.
-	RECEIVE_SITES: ( action, { getState, dispatch }) => {
-		const sites = getSites( getState() );
-		dispatch( setActiveSiteId( sites[0].id ) );
-	},
-
+	/**
+	 * Refetches site data when a new active site is set.
+	 */
 	SET_ACTIVE_SITE_ID: ( action, { dispatch }) => {
 		dispatch( fetchSiteData( action.siteId ) );
 	},
 
+	/**
+	 * Dispatches results of site data fetches.
+	 */
 	FETCH_SITE_DATA: async( action, { getState, dispatch }) => {
 		const state = getState();
 
 		if ( siteHasNoSelfEndpoint( state, action.siteId ) ) {
+
+			// This function's fetch has already failed for this site.
 			dispatch( fetchSiteDataFromBackupEndpoint( action.siteId ) );
 			return;
 		}
@@ -59,7 +50,6 @@ const effects = {
 		// This requires that this plugin be active on that site. If the plugin is
 		// not active, the backup fetch function (which doesn't require this plugin
 		// to be active) is dispatched.
-		// TO-DO: Remember failures and don't run the same request again.
 		try {
 			response = await fetch( url );
 		} catch ( e ) {
@@ -83,12 +73,14 @@ const effects = {
 		}) );
 	},
 
+	/**
+	 * Dispatches results of backup site data fetches.
+	 */
 	FETCH_SITE_DATA_FROM_BACKUP_ENDPOINT: async( action, { getState, dispatch }) => {
 		const root = get( global, [ 'wpApiSettings', 'root' ], false );
 		const url = `${root}${SITES_REST_PATH}${action.siteId}`;
 		let response;
 
-		// Try to fetch from a site where this plugin may not be activated.
 		try {
 			response = await fetch( url );
 		} catch ( e ) {
@@ -107,23 +99,37 @@ const effects = {
 		}
 
 		const data = await response.json();
-		dispatch( receiveSiteData({
-			...getAllSiteData( getState() ),
-			[action.siteId]: data
-		}) );
+		dispatch(
+			receiveSiteData({
+				...getAllSiteData( getState() ),
+				[action.siteId]: data
+			})
+		);
 	},
 
+	/**
+	 * Refetches site data if the timer is below one second.
+	 */
 	SET_REFRESH_TIMER: ( action, { getState, dispatch }) => {
 		if ( 1 > action.secondsToRefresh ) {
-			dispatch( fetchSiteData( getActiveSiteId( getState() ) ) );
+			dispatch(
+				fetchSiteData( getActiveSiteId( getState() ) )
+			);
 		}
 	},
 
+	/**
+	 * Add a site to the list of sites with no working `self` REST endpoint.
+	 */
 	ADD_SITE_TO_NO_SELF_ENDPOINT_LIST: ( action, { getState, dispatch }) => {
 		const sites = getSitesWithNoSelfEndpoint( getState() );
 
 		if ( -1 === sites.indexOf( action.siteId ) ) {
-			dispatch( setSitesWithNoSelfEndpoint( sites.concat([ action.siteId ]) ) );
+			dispatch(
+				setSitesWithNoSelfEndpoint(
+					sites.concat([ action.siteId ])
+				)
+			);
 		}
 	}
 };
