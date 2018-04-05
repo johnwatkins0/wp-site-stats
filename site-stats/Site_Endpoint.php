@@ -18,13 +18,13 @@ class Site_Endpoint {
 	 * Adds hook callbacks.
 	 */
 	public function __construct() {
-		add_action( 'rest_api_init', [ __CLASS__, 'register_routes' ] );
+		add_action( 'rest_api_init', [ __CLASS__, 'register_route' ] );
 	}
 
 	/**
-	 * Registers the plugin's REST routes.
+	 * Registers the REST route.
 	 */
-	public static function register_routes() {
+	public static function register_route() {
 		register_rest_route(
 			Plugin::VENDOR . '/' . self::ENDPOINT_VERSION,
 			'/' . Plugin::TEXT_DOMAIN . '/(?P<id>[\d]+|self)',
