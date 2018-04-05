@@ -81,8 +81,7 @@ class Sites_Endpoint {
 
 		$sites = get_sites(
 			[
-				'site__not_in'          => $args['exclude'],
-				'handling_rest_request' => true,
+				'site__not_in' => $args['exclude'],
 			]
 		);
 
