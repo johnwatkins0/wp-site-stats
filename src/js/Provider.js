@@ -6,6 +6,7 @@ import SiteStats from './SiteStats';
 import { setActiveSiteId, setRefreshTimer } from './store/actions';
 import effects from './store/effects';
 import reducer from './store/reducer';
+import { getSecondsToRefresh } from './store/selectors';
 import { REFRESH_SECONDS } from './constants';
 
 const Context = React.createContext();
@@ -14,8 +15,10 @@ class Provider extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			sites: props.sites
+			sites: props.sites,
+			secondsToRefresh: REFRESH_SECONDS
 		};
+		this.getState = this.getState.bind( this );
 		this.dispatch = this.dispatch.bind( this );
 		this.tick = this.tick.bind( this );
 	}
@@ -27,6 +30,10 @@ class Provider extends React.Component {
 
 	componentWillUpdate( prevProps, nextState ) {
 		this.maybeStopTicker( nextState );
+	}
+
+	getState() {
+		return Object.assign({}, this.state );
 	}
 
 	dispatch( action )  {
@@ -42,7 +49,7 @@ class Provider extends React.Component {
 				action,
 				{
 					dispatch: this.dispatch,
-					getState: () => Object.assign({}, this.state )
+					getState: this.getState
 				}
 			);
 		}
@@ -53,14 +60,8 @@ class Provider extends React.Component {
 	}
 
 	tick() {
-		const secondsToRefresh = get(
-			this,
-			[ 'state', 'secondsToRefresh' ],
-			REFRESH_SECONDS + 1
-		);
-
 		this.dispatch(
-			setRefreshTimer( secondsToRefresh - 1 )
+			setRefreshTimer( getSecondsToRefresh( this.getState() ) - 1 )
 		);
 	}
 

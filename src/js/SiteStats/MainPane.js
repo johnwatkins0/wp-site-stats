@@ -3,17 +3,9 @@ import React from 'react';
 import format from 'date-fns/format';
 import get from 'lodash.get';
 
+import { getCommentExcerpt } from '../utils/getCommentExcerpt';
 
-export const getCommentExcerpt = ( comment ) => {
-	const words = comment.split( ' ' );
-	if ( 15 > words.length ) {
-		return words.join( ' ' );
-	}
-
-	return `${words.slice( 0, 15 ).join( ' ' )} ...`;
-};
-
-export const Header = ({ site_title, site_url, activeSiteCreatedDate }) => (
+export const Header = ({ site_title, site_url, createdDate }) => (
 	<header className="MainPane__header">
 		<h2 dangerouslySetInnerHTML={ { __html: site_title || '&nbsp;' } } />
 		<div className="MainPane__site-info">
@@ -31,7 +23,7 @@ export const Header = ({ site_title, site_url, activeSiteCreatedDate }) => (
 					Created:
 				</span>
 				{' '}
-				{format( activeSiteCreatedDate, 'MMMM D, YYYY' )}
+				{format( createdDate, 'MMMM D, YYYY' )}
 			</div>
 		</div>
 	</header>
@@ -123,7 +115,7 @@ const MainPane = ({
 	shouldRefresh
 }) => (
 	<article className="MainPane">
-		<Header { ...{ site_title, site_url, activeSiteCreatedDate } } />
+		<Header { ...{ site_title, site_url } } createdDate={activeSiteCreatedDate} />
 		<Stats { ...{ post_count, page_count, user_count, comment_count } } />
 		<LatestPost { ...latest_post } />
 		<LatestComment { ...latest_comment } />

@@ -1,6 +1,178 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainPane component 1`] = `
+exports[`MainPane component renders correctly 1`] = `
+<article
+  className="MainPane"
+>
+  <header
+    className="MainPane__header"
+  >
+    <h2
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "My Site",
+        }
+      }
+    />
+    <div
+      className="MainPane__site-info"
+    >
+      <div>
+        <span
+          className="MainPane__site-info-key"
+        >
+          URL:
+        </span>
+         
+        <a
+          href="http://wpmu/my-site"
+        >
+          http://wpmu/my-site
+        </a>
+      </div>
+      <div>
+        <span
+          className="MainPane__site-info-key"
+        >
+          Created:
+        </span>
+         
+        Invalid Date
+      </div>
+    </div>
+  </header>
+  <section
+    className="MainPane__section"
+  >
+    <h3>
+      By the Numbers
+    </h3>
+    <div
+      className="MainPane__stats"
+    >
+      <div
+        className="MainPane__stat-container"
+      >
+        <div
+          className="MainPane__stat"
+        >
+          <h4
+            className="MainPane__stat-title"
+          >
+            Posts
+          </h4>
+          <div
+            className="MainPane__stat-number"
+          >
+            1
+          </div>
+        </div>
+      </div>
+      <div
+        className="MainPane__stat-container"
+      >
+        <div
+          className="MainPane__stat"
+        >
+          <h4
+            className="MainPane__stat-title"
+          >
+            Pages
+          </h4>
+          <div
+            className="MainPane__stat-number"
+          >
+            1
+          </div>
+        </div>
+      </div>
+      <div
+        className="MainPane__stat-container"
+      >
+        <div
+          className="MainPane__stat"
+        >
+          <h4
+            className="MainPane__stat-title"
+          >
+            Users
+          </h4>
+          <div
+            className="MainPane__stat-number"
+          >
+            1
+          </div>
+        </div>
+      </div>
+      <div
+        className="MainPane__stat-container"
+      >
+        <div
+          className="MainPane__stat"
+        >
+          <h4
+            className="MainPane__stat-title"
+          >
+            Comments
+          </h4>
+          <div
+            className="MainPane__stat-number"
+          >
+            1
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    className="MainPane__section MainPane__latest-post"
+  >
+    <h3>
+      Latest Post
+    </h3>
+    <div
+      className="MainPane__latest-post-link"
+    >
+      <a
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Hello world!",
+          }
+        }
+        href="http://wpmu/my-site/2018/04/02/hello-world/"
+      />
+    </div>
+  </section>
+  <section
+    className="MainPane__section MainPane__latest-comment"
+  >
+    <h3>
+      Latest Comment
+    </h3>
+    <div
+      className="MainPane__latest-comment-link"
+    >
+      <a
+        href="http://wpmu/my-site/2018/04/02/hello-world/#comment-1"
+      >
+        A WordPress Commenter 
+					on April 2, 2018
+					at 2:29 p.m.
+      </a>
+    </div>
+  </section>
+  <footer
+    className="MainPane__footer"
+  >
+    Refreshing in 
+     second
+    s
+    .
+  </footer>
+</article>
+`;
+
+exports[`MainPane component renders correctly with no footer 1`] = `
 <article
   className="MainPane"
 >

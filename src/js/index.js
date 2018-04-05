@@ -56,7 +56,7 @@ const start = async( appRoot ) => {
 };
 
 window.addEventListener( 'load', async() => {
-	if ( ( ! 'fetch' in window ) ) {
+	if ( ! ( 'fetch' in window ) ) {
 		await import( 'whatwg-fetch' );
 	}
 
