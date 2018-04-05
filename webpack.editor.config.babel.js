@@ -39,7 +39,7 @@ const main = {
 			}
 		]
 	},
-	devtool: 'sourcemap'
+	devtool: ( ! PROD ) && 'sourcemap'
 };
 
 

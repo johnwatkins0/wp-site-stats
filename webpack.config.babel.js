@@ -6,7 +6,14 @@ import packageJson from './package.json';
 const PROD = process.argv.includes( '-p' );
 const min = PROD ? '.min' : '';
 const entry = {
-	[packageJson.name]: [ './src/js/index.js', './src/css/style.css' ]
+	[packageJson.name]: [
+		'./src/js/index.js',
+		'./src/css/style.css'
+	],
+	[`${packageJson.name}-editor`]: [
+		'./src/editor/js/index.js',
+		'./src/editor/css/style.css'
+	]
 };
 const filename = `[name]${min}.js`;
 const plugins = [ new ExtractTextPlugin( `[name]${min}.css` ) ];
@@ -34,12 +41,20 @@ const main = {
 				test: /\.css$/,
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
-					use: [ 'css-loader', 'postcss-loader' ]
+					use: [
+						'css-loader',
+						{
+							loader: 'postcss-loader',
+							options: {
+								plugins: [ require( 'autoprefixer' ) ]
+							}
+						}
+					]
 				})
 			}
 		]
 	},
-	devtool: 'sourcemap'
+	devtool: ( ! PROD ) && 'sourcemap'
 };
 
 

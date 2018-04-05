@@ -44,5 +44,15 @@
     "lodash.set": "^4.3.2",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "stylelint": {
+    "extends": "stylelint-config-wordpress",
+    "rules": {
+      "selector-class-pattern": null
+    }
   }
 }
