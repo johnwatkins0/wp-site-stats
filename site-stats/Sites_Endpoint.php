@@ -79,11 +79,7 @@ class Sites_Endpoint {
 			return $response;
 		}
 
-		$sites = get_sites(
-			[
-				'site__not_in' => $args['exclude'],
-			]
-		);
+		$sites = get_sites( [ 'site__not_in' => $args['exclude'] ] );
 
 		$prepared_sites = array_map(
 			function( $site ) {

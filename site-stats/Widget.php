@@ -35,7 +35,7 @@ class Widget extends \WP_Widget {
 	 * @param array $instance Data passed to this instance.
 	 */
 	public function form( $instance = [] ) {
-		$exclude = empty( $instance['exclude'] ) ? '' : $instance['exclude'];
+		$exclude = $instance['exclude'] ?? '';
 		?>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'exclude' ) ); ?>">

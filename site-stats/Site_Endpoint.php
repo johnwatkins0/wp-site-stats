@@ -93,16 +93,13 @@ class Site_Endpoint {
 	public static function get_latest_comment( $request ) {
 		static $comments_controller;
 
-		$comment_query = new \WP_Comment_Query(
-			[
-				'number' => 1,
-			]
-		);
+		$comment_query = new \WP_Comment_Query( [ 'number' => 1 ] );
 
 		if ( empty( $comment_query ) || empty( $comment_query->comments ) ) {
 			return false;
 		}
 
+		// Translate comment in to REST format.
 		$comments_controller = empty( $comments_controller )
 			? new \WP_REST_Comments_Controller()
 			: $comments_controller;
@@ -149,9 +146,9 @@ class Site_Endpoint {
 		$args    = $request->get_params();
 		$site_id = $args['id'];
 
-		// If the ID is 'self', the site's enpoint is being accessed directly via
-		// the site's own doman/path. Otherwise, we switch to that blog and get
-		// the requested info.
+		// If the ID is 'self', the site's endpoint is being accessed directly via
+		// the site's own doman/path. Otherwise, we need to switch to that blog from
+		// the current one to get the custom data.
 		if ( 'self' !== $site_id && is_multisite() ) {
 			switch_to_blog( $site_id ); // phpcs:disable WordPress.VIP.RestrictedFunctions.switch_to_blog_switch_to_blog
 		}
