@@ -20,7 +20,7 @@ const fetchSites = ( appRoot ) => new Promise( async( resolve, reject ) => {
 		[ 'wpApiSettings', 'root' ],
 		null
 	);
-	console.log( wp );
+
 	if ( null === rootUrl ) {
 		reject();
 		return;
