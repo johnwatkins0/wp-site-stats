@@ -8,7 +8,7 @@
   "scripts": {
     "start": "webpack -w",
     "start:editor": "webpack -w --config webpack.editor.config.babel.js",
-    "build": "webpack -p && webpack -p --config webpack.editor.config.babel.js",
+    "build": "webpack -p",
     "lint": "stylelint --fix src/css && eslint --fix .",
     "test": "jest",
     "test:update-snapshots": "jest -u"

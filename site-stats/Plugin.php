@@ -24,7 +24,7 @@ class Plugin {
 		new Sites_Endpoint();
 		new Site_Endpoint();
 		add_action( 'template_redirect', [ __CLASS__, 'maybe_block_assets' ] );
-		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'register_assets' ] );
+		add_action( 'init', [ __CLASS__, 'register_assets' ] );
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'enqueue_assets' ] );
 		add_action( 'widgets_init', [ __CLASS__, 'register_widget' ] );
 		add_action( 'init', [ __CLASS__, 'register_block' ] );
