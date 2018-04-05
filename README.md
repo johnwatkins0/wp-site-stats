@@ -1,13 +1,15 @@
 # wp-site stats
 
-A WordPress plugin providing a frontend widget showing stats about sites in a multisite network. 
+A WordPress plugin providing a frontend widget showing stats about sites in a multisite network.
+
+Note: This plugin has only been tested in a *subdirectory* WordPress multisite installation. It may not be ready for a subdomain installation.
 
 ## Install
 
 1. Clone this repository into your wp-content/plugins directory.
 2. In this plugin's directory, run `composer install` and `yarn`.
 
-## Use
+## Usage
 
 ### Shortcode
 
