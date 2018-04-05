@@ -15,7 +15,7 @@ const SiteStats = ({
 	<div className="SiteStats">
 		<div className="SiteStats__header">
 			<h1>Site Stats</h1>
-			{0 < sites.length && <SiteSelector
+			{( 1 < sites.length ) && <SiteSelector
 				sites={sites}
 				activeSiteId={activeSiteId}
 				setActiveSite={setActiveSite}

@@ -64,6 +64,19 @@ class Sites_Endpoint {
 	public static function get_sites( \WP_REST_Request $request ) {
 		$args = $request->get_params();
 
+		// Handle a non-multisite environment.
+		if ( ! function_exists( 'get_sites' ) ) {
+			$response = rest_ensure_response( [
+				(object) [
+					'id' => '0',
+					'domain' => preg_replace( '/^https?:\/\//', '',  get_site_url() ),
+					'path' => '/',
+					'registered' => ''
+				]
+			] );
+			return $response;
+		}
+
 		$sites = get_sites(
 			[
 				'site__not_in'          => $args['exclude'],

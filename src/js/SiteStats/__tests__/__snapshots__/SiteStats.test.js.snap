@@ -88,15 +88,6 @@ exports[`SiteStats component 1`] = `
               http://wpmu/my-site
             </a>
           </div>
-          <div>
-            <span
-              className="MainPane__site-info-key"
-            >
-              Created:
-            </span>
-             
-            Invalid Date
-          </div>
         </div>
       </header>
       <section

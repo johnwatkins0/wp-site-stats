@@ -48,7 +48,7 @@ class Plugin {
 		wp_register_script(
 			self::TEXT_DOMAIN,
 			$dist . self::TEXT_DOMAIN . "$min.js",
-			[ 'wp-components' ],
+			[ 'wp-api-request' ],
 			self::VERSION,
 			true
 		);

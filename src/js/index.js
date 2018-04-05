@@ -15,8 +15,12 @@ const getExcludedSitesParam = ( appRoot ) => {
 };
 
 const fetchSites = ( appRoot ) => new Promise( async( resolve, reject ) => {
-	const rootUrl = get( window, [ 'wpApiSettings', 'root' ], null );
-
+	const rootUrl = get(
+		window,
+		[ 'wpApiSettings', 'root' ],
+		null
+	);
+	console.log( wp );
 	if ( null === rootUrl ) {
 		reject();
 		return;
@@ -48,6 +52,8 @@ const start = async( appRoot ) => {
 	} catch ( e ) {
 		return;
 	}
+
+	console.log( sites );
 
 	render(
 		<Provider sites={sites} />,

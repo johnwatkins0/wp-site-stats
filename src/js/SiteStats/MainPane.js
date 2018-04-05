@@ -18,13 +18,13 @@ export const Header = ({ site_title, site_url, createdDate }) => (
 					{site_url}
 				</a>
 			</div>
-			<div>
+			{createdDate && <div>
 				<span className="MainPane__site-info-key">
 					Created:
 				</span>
 				{' '}
 				{format( createdDate, 'MMMM D, YYYY' )}
-			</div>
+			</div>}
 		</div>
 	</header>
 );
