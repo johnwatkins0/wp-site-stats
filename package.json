@@ -14,7 +14,9 @@
     "test:update-snapshots": "jest -u"
   },
   "husky": {
-    "pre-commit": "npm run lint && npm run test"
+    "hooks": {
+      "pre-commit": "composer lint && npm run lint && npm run test"
+    }
   },
   "devDependencies": {
     "autoprefixer": "^8.2.0",

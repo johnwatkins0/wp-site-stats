@@ -66,14 +66,16 @@ class Sites_Endpoint {
 
 		// Handle a non-multisite environment.
 		if ( ! function_exists( 'get_sites' ) ) {
-			$response = rest_ensure_response( [
-				(object) [
-					'id' => '0',
-					'domain' => preg_replace( '/^https?:\/\//', '',  get_site_url() ),
-					'path' => '/',
-					'registered' => ''
+			$response = rest_ensure_response(
+				[
+					(object) [
+						'id'         => '0',
+						'domain'     => preg_replace( '/^https?:\/\//', '', get_site_url() ),
+						'path'       => '/',
+						'registered' => '',
+					],
 				]
-			] );
+			);
 			return $response;
 		}
 
