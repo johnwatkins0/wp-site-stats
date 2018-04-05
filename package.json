@@ -1,7 +1,7 @@
 {
   "name": "site-stats",
   "version": "0.0.1",
-  "description": "A WordPress showing stats about sites in a multisite network.",
+  "description": "A WordPress plugin providing a frontend widget showing stats about sites in a multisite network.",
   "main": "src/js",
   "repository": "https://www.github.com/johnwatkins0/site-stats",
   "author": "John Watkins <johnwatkins0@gmail.com>",

@@ -1,6 +1,6 @@
 {
   "name": "colbycomms/wp-schedule",
-  "description": "A WordPress showing stats about sites in a multisite network.",
+  "description": "A WordPress plugin providing a frontend widget showing stats about sites in a multisite network.",
   "type": "library",
   "scripts": {
     "phpcbf": "phpcbf --extensions=php",
