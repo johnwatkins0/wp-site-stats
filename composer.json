@@ -1,0 +1,28 @@
+{
+  "name": "colbycomms/wp-schedule",
+  "description": "A WordPress showing stats about sites in a multisite network.",
+  "type": "library",
+  "scripts": {
+    "phpcbf": "phpcbf --extensions=php",
+    "lint": "phpcs --extensions=php -s"
+  },
+  "authors": [
+    {
+      "name": "John Watkins",
+      "email": "johnwatkins0@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require-dev": {
+    "squizlabs/php_codesniffer": "*",
+    "wp-coding-standards/wpcs": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "JohnWatkins\\SiteStats\\": "site-stats/"
+    },
+    "files": [
+      "site-stats.php"
+    ]
+  }
+}

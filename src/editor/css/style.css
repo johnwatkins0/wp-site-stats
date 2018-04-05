@@ -1,0 +1,14 @@
+.site-stats-placeholder {
+	padding: 1rem 0.75rem;
+	text-align: center;
+	border-radius: 2px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.site-stats-inspector {
+	padding-bottom: 1.5rem;
+}
+
+.site-stats-inspector__label-text {
+	display: block;
+}

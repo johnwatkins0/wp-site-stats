@@ -1,0 +1,48 @@
+{
+  "name": "site-stats",
+  "version": "0.0.1",
+  "description": "A WordPress showing stats about sites in a multisite network.",
+  "main": "src/js",
+  "repository": "https://www.github.com/johnwatkins0/site-stats",
+  "author": "John Watkins <johnwatkins0@gmail.com>",
+  "scripts": {
+    "start": "webpack -w",
+    "start:editor": "webpack -w --config webpack.editor.config.babel.js",
+    "build": "webpack -p && webpack -p --config webpack.editor.config.babel.js",
+    "lint": "stylelint --fix src/css && eslint --fix .",
+    "test": "jest",
+    "test:update-snapshots": "jest -u"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.2.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-wordpress": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "jest": "^22.4.3",
+    "postcss-loader": "^2.1.3",
+    "react-test-renderer": "^16.3.0",
+    "style-loader": "^0.20.3",
+    "stylelint": "^9.2.0",
+    "stylelint-config-wordpress": "^13.0.0",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13"
+  },
+  "dependencies": {
+    "date-fns": "^1.29.0",
+    "lodash.find": "^4.6.0",
+    "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
+  }
+}
