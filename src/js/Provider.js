@@ -100,7 +100,7 @@ class Provider extends React.Component {
 		};
 
 		return (
-			<AppContext.Provider value={state}>
+			<AppContext.Provider value={appValue}>
 				<ActiveSiteContext.Provider value={ activeSiteValue } >
 					<SiteStats />
 				</ActiveSiteContext.Provider>
