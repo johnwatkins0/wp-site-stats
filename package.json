@@ -7,7 +7,6 @@
   "author": "John Watkins <johnwatkins0@gmail.com>",
   "scripts": {
     "start": "webpack -w",
-    "start:editor": "webpack -w --config webpack.editor.config.babel.js",
     "build": "webpack -p",
     "lint": "stylelint --fix src/css && eslint --fix .",
     "test": "jest",
