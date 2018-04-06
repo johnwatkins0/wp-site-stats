@@ -3,31 +3,36 @@ import React from 'react';
 import format from 'date-fns/format';
 import get from 'lodash.get';
 
-import { getCommentExcerpt } from '../utils/getCommentExcerpt';
-import { Context } from '../Provider';
+import { ActiveSiteContext, AppContext } from '../Context';
 
-export const Header = ({ site_title, site_url, createdDate }) => (
-	<header className="MainPane__header">
-		<h2 dangerouslySetInnerHTML={ { __html: site_title || '&nbsp;' } } />
-		<div className="MainPane__site-info">
-			<div>
-				<span className="MainPane__site-info-key">
-					URL:
-				</span>
-				{' '}
-				<a href={site_url}>
-					{site_url}
-				</a>
-			</div>
-			{createdDate && <div>
-				<span className="MainPane__site-info-key">
-					Created:
-				</span>
-				{' '}
-				{format( createdDate, 'MMMM D, YYYY' )}
-			</div>}
-		</div>
-	</header>
+import { getCommentExcerpt } from '../utils/getCommentExcerpt';
+
+export const Header = () => (
+	<ActiveSiteContext.Consumer>
+		{({ site_title, site_url, activeSiteCreatedDate }) => (
+			<header className="MainPane__header">
+				<h2 dangerouslySetInnerHTML={ { __html: site_title || '&nbsp;' } } />
+				<div className="MainPane__site-info">
+					<div>
+						<span className="MainPane__site-info-key">
+							URL:
+						</span>
+						{' '}
+						<a href={site_url}>
+							{site_url}
+						</a>
+					</div>
+					{activeSiteCreatedDate && <div>
+						<span className="MainPane__site-info-key">
+							Created:
+						</span>
+						{' '}
+						{format( activeSiteCreatedDate, 'MMMM D, YYYY' )}
+					</div>}
+				</div>
+			</header>
+		)}
+	</ActiveSiteContext.Consumer>
 );
 
 export const Stat = ({ title, number = '' }) => (
@@ -43,64 +48,80 @@ export const Stat = ({ title, number = '' }) => (
 	</div>
 );
 
-export const Stats = ({ post_count, page_count, user_count, comment_count })  => (
-	<section className="MainPane__section">
-		<h3>By the Numbers</h3>
-		<div  className="MainPane__stats">
-			<Stat title="Posts" number={get( post_count, 'publish', '-' )} />
-			<Stat title="Pages" number={get( page_count, 'publish', '-' )} />
-			<Stat title="Users" number={user_count || '-'} />
-			<Stat title="Comments" number={get( comment_count, 'approved', '-' )} />
-		</div>
-	</section>
+export const Stats = ()  => (
+	<ActiveSiteContext.Consumer>
+		{({ post_count, page_count, user_count, comment_count }) => (
+			<section className="MainPane__section">
+				<h3>By the Numbers</h3>
+				<div  className="MainPane__stats">
+					<Stat title="Posts" number={get( post_count, 'publish', '-' )} />
+					<Stat title="Pages" number={get( page_count, 'publish', '-' )} />
+					<Stat title="Users" number={user_count || '-'} />
+					<Stat title="Comments" number={get( comment_count, 'approved', '-' )} />
+				</div>
+			</section>
+		)}
+	</ActiveSiteContext.Consumer>
 );
 
-export const LatestPost = ({ link, title = '' }) => (
-	<section className="MainPane__section MainPane__latest-post">
-		<h3>
-			Latest Post
-		</h3>
-		<div className="MainPane__latest-post-link">
-			<a
-				href={link}
-				dangerouslySetInnerHTML={
-					{
-						__html: title.rendered || '(no title)'
-					}
-				}
-			/>
-		</div>
-	</section>
+export const LatestPost = () => (
+	<ActiveSiteContext.Consumer>
+		{({ latest_post }) => latest_post && (
+			<section className="MainPane__section MainPane__latest-post">
+				<h3>
+					Latest Post
+				</h3>
+				<div className="MainPane__latest-post-link">
+					<a
+						href={latest_post.link}
+						dangerouslySetInnerHTML={
+							{
+								__html: latest_post.title.rendered || '(no title)'
+							}
+						}
+					/>
+				</div>
+			</section>
+		)}
+	</ActiveSiteContext.Consumer>
 );
 
-export const LatestComment = ({ link, author_name = '', date }) => (
-	<section className="MainPane__section MainPane__latest-comment">
-		<h3>
-			Latest Comment
-		</h3>
-		<div className="MainPane__latest-comment-link">
-			<a href={link}>
-				{
-					`${author_name} 
-					on ${format( date, 'MMMM D, YYYY' )}
-					at ${format( date, 'h:mm aa' )}`
-				}
-			</a>
-		</div>
-	</section>
+export const LatestComment = () => (
+	<ActiveSiteContext.Consumer>
+		{({ latest_comment }) => latest_comment && (
+			<section className="MainPane__section MainPane__latest-comment">
+				<h3>
+					Latest Comment
+				</h3>
+				<div className="MainPane__latest-comment-link">
+					<a href={latest_comment.link}>
+						{
+							`${latest_comment.author_name} 
+							on ${format( latest_comment.date, 'MMMM D, YYYY' )}
+							at ${format( latest_comment.date, 'h:mm aa' )}`
+						}
+					</a>
+				</div>
+			</section>
+		)}
+	</ActiveSiteContext.Consumer>
 );
 
-export const Footer = ({ shouldRefresh, secondsToRefresh }) => {
-	if ( ! shouldRefresh ) {
-		return null;
-	}
+export const Footer = () => (
+	<AppContext.Consumer>
+		{( shouldRefresh, secondsToRefresh ) => {
+			if ( ! shouldRefresh ) {
+				return null;
+			}
 
-	return (
-		<footer className="MainPane__footer">
-			Refreshing in {secondsToRefresh} second{1 === secondsToRefresh ? '' : 's'}.
-		</footer>
-	);
-};
+			return (
+				<footer className="MainPane__footer">
+					Refreshing in {secondsToRefresh} second{1 === secondsToRefresh ? '' : 's'}.
+				</footer>
+			);
+		}}
+	</AppContext.Consumer>
+);
 
 const MainPane = ({
 	site_title = '&nbsp;',
@@ -116,11 +137,11 @@ const MainPane = ({
 	shouldRefresh
 }) => (
 	<article className="MainPane">
-		<Header { ...{ site_title, site_url } } createdDate={activeSiteCreatedDate} />
-		<Stats { ...{ post_count, page_count, user_count, comment_count } } />
-		<LatestPost { ...latest_post } />
-		<LatestComment { ...latest_comment } />
-		<Footer { ...{ shouldRefresh, secondsToRefresh } } />
+		<Header />
+		<Stats />
+		<LatestPost />
+		<LatestComment />
+		<Footer />
 	</article>
 );
 

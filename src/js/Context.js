@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const Context = createContext();
+export const AppContext = createContext();
+export const ActiveSiteContext = createContext( 'active-site' );
 
-export default Context;

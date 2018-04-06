@@ -4,13 +4,13 @@ import get from 'lodash';
 import MainPane from './MainPane';
 import SiteSelector from './SiteSelector';
 
-import Context from '../Context';
+import { AppContext } from '../Context';
 
 const SiteStats = ({ setActiveSiteId }) => (
 	<div className="SiteStats">
 		<div className="SiteStats__header">
 			<h1>Site Stats</h1>
-			<Context.Consumer>
+			<AppContext.Consumer>
 				{({ sites, activeSiteId }) => (
 					<SiteSelector
 						sites={sites}
@@ -18,25 +18,10 @@ const SiteStats = ({ setActiveSiteId }) => (
 						setActiveSite={setActiveSiteId}
 					/>
 				)}
-			</Context.Consumer>
+			</AppContext.Consumer>
 		</div>
 		<div className="SiteStats__body">
-			<Context.Consumer>
-				{({
-					siteData,
-					activeSiteId,
-					shouldRefresh,
-					secondsToRefresh,
-					activeSiteCreatedDate
-					}) => (
-					<MainPane
-						{...siteData[activeSiteId]}
-						shouldRefresh={shouldRefresh}
-						secondsToRefresh={secondsToRefresh}
-						activeSiteCreatedDate={activeSiteCreatedDate}
-					/>
-				)}
-			</Context.Consumer>
+			<MainPane />
 		</div>
 	</div>
 );

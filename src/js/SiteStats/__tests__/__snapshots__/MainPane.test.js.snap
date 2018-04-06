@@ -10,7 +10,7 @@ exports[`MainPane component renders correctly 1`] = `
     <h2
       dangerouslySetInnerHTML={
         Object {
-          "__html": "My Site",
+          "__html": "&nbsp;",
         }
       }
     />
@@ -25,10 +25,8 @@ exports[`MainPane component renders correctly 1`] = `
         </span>
          
         <a
-          href="http://wpmu/my-site"
-        >
-          http://wpmu/my-site
-        </a>
+          href={undefined}
+        />
       </div>
     </div>
   </header>
@@ -55,7 +53,7 @@ exports[`MainPane component renders correctly 1`] = `
           <div
             className="MainPane__stat-number"
           >
-            1
+            -
           </div>
         </div>
       </div>
@@ -73,7 +71,7 @@ exports[`MainPane component renders correctly 1`] = `
           <div
             className="MainPane__stat-number"
           >
-            1
+            -
           </div>
         </div>
       </div>
@@ -91,7 +89,7 @@ exports[`MainPane component renders correctly 1`] = `
           <div
             className="MainPane__stat-number"
           >
-            1
+            -
           </div>
         </div>
       </div>
@@ -109,57 +107,12 @@ exports[`MainPane component renders correctly 1`] = `
           <div
             className="MainPane__stat-number"
           >
-            1
+            -
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section
-    className="MainPane__section MainPane__latest-post"
-  >
-    <h3>
-      Latest Post
-    </h3>
-    <div
-      className="MainPane__latest-post-link"
-    >
-      <a
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "Hello world!",
-          }
-        }
-        href="http://wpmu/my-site/2018/04/02/hello-world/"
-      />
-    </div>
-  </section>
-  <section
-    className="MainPane__section MainPane__latest-comment"
-  >
-    <h3>
-      Latest Comment
-    </h3>
-    <div
-      className="MainPane__latest-comment-link"
-    >
-      <a
-        href="http://wpmu/my-site/2018/04/02/hello-world/#comment-1"
-      >
-        A WordPress Commenter 
-					on April 2, 2018
-					at 2:29 p.m.
-      </a>
-    </div>
-  </section>
-  <footer
-    className="MainPane__footer"
-  >
-    Refreshing in 
-     second
-    s
-    .
-  </footer>
 </article>
 `;
 
@@ -173,7 +126,7 @@ exports[`MainPane component renders correctly with no footer 1`] = `
     <h2
       dangerouslySetInnerHTML={
         Object {
-          "__html": "My Site",
+          "__html": "&nbsp;",
         }
       }
     />
@@ -188,10 +141,8 @@ exports[`MainPane component renders correctly with no footer 1`] = `
         </span>
          
         <a
-          href="http://wpmu/my-site"
-        >
-          http://wpmu/my-site
-        </a>
+          href={undefined}
+        />
       </div>
     </div>
   </header>
@@ -218,7 +169,7 @@ exports[`MainPane component renders correctly with no footer 1`] = `
           <div
             className="MainPane__stat-number"
           >
-            1
+            -
           </div>
         </div>
       </div>
@@ -236,7 +187,7 @@ exports[`MainPane component renders correctly with no footer 1`] = `
           <div
             className="MainPane__stat-number"
           >
-            1
+            -
           </div>
         </div>
       </div>
@@ -254,7 +205,7 @@ exports[`MainPane component renders correctly with no footer 1`] = `
           <div
             className="MainPane__stat-number"
           >
-            1
+            -
           </div>
         </div>
       </div>
@@ -272,47 +223,10 @@ exports[`MainPane component renders correctly with no footer 1`] = `
           <div
             className="MainPane__stat-number"
           >
-            1
+            -
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section
-    className="MainPane__section MainPane__latest-post"
-  >
-    <h3>
-      Latest Post
-    </h3>
-    <div
-      className="MainPane__latest-post-link"
-    >
-      <a
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "Hello world!",
-          }
-        }
-        href="http://wpmu/my-site/2018/04/02/hello-world/"
-      />
-    </div>
-  </section>
-  <section
-    className="MainPane__section MainPane__latest-comment"
-  >
-    <h3>
-      Latest Comment
-    </h3>
-    <div
-      className="MainPane__latest-comment-link"
-    >
-      <a
-        href="http://wpmu/my-site/2018/04/02/hello-world/#comment-1"
-      >
-        A WordPress Commenter 
-					on April 2, 2018
-					at 2:29 p.m.
-      </a>
     </div>
   </section>
 </article>

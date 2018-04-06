@@ -1,3 +1,4 @@
+/* eslint camelcase: 0 */
 import React from 'react';
 import get from 'lodash.get';
 
@@ -8,7 +9,7 @@ import effects from './store/effects';
 import reducer from './store/reducer';
 import { getSecondsToRefresh } from './store/selectors';
 import { REFRESH_SECONDS } from './constants';
-import Context from './Context';
+import { AppContext, ActiveSiteContext } from './Context';
 
 class Provider extends React.Component {
 	constructor( props ) {
@@ -17,9 +18,14 @@ class Provider extends React.Component {
 			sites: props.sites,
 			secondsToRefresh: REFRESH_SECONDS,
 			siteData: {
-				'0': {}
+				'0': {
+					site_title: '',
+					site_url: '',
+					latest_post: null,
+					latest_comment: null
+				}
 			},
-			setActiveSiteId: '0',
+			activeSiteId: '0',
 			shouldRefresh: true
 		};
 		this.getState = this.getState.bind( this );
@@ -76,14 +82,22 @@ class Provider extends React.Component {
 	}
 
 	render() {
+		const state = this.getState();
 		return (
-			<Context.Provider value={this.state}>
-				<SiteStats
-					setActiveSiteId={( siteId ) => {
-						this.dispatch( setActiveSiteId( siteId ) );
+			<AppContext.Provider value={state}>
+				<ActiveSiteContext.Provider
+					value={ {
+						...state.siteData[state.activeSiteId],
+						activeSiteCreatedDate: state.activeSiteCreatedDate
 					}}
-				/>
-			</Context.Provider>
+				>
+					<SiteStats
+						setActiveSiteId={( siteId ) => {
+							this.dispatch( setActiveSiteId( siteId ) );
+						}}
+					/>
+				</ActiveSiteContext.Provider>
+			</AppContext.Provider>
 		);
 	}
 }
