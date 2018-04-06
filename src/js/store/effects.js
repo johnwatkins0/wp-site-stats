@@ -67,6 +67,7 @@ const effects = {
 		}
 
 		const data = await response.json();
+		data.createdDate = getSiteCreatedDate( state, action.siteId );
 
 		dispatch( receiveSiteData({
 			...getAllSiteData( state ),
