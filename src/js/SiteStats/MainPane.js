@@ -123,19 +123,7 @@ export const Footer = () => (
 	</AppContext.Consumer>
 );
 
-const MainPane = ({
-	site_title = '&nbsp;',
-	site_url,
-	user_count,
-	post_count,
-	page_count,
-	latest_post,
-	latest_comment,
-	comment_count,
-	activeSiteCreatedDate,
-	secondsToRefresh,
-	shouldRefresh
-}) => (
+const MainPane = () => (
 	<article className="MainPane">
 		<Header />
 		<Stats />
