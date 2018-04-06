@@ -19,8 +19,6 @@ const DEFAULT_SITE_DATA = {
 };
 
 class Provider extends React.Component {
-
-
 	constructor( props ) {
 		super( props );
 		this.state = {
