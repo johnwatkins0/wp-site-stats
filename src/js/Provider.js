@@ -91,7 +91,7 @@ class Provider extends React.Component {
 
 		const appValue = {
 			...state,
-			setActiveSiteId: this.setActiveSiteId
+			setActiveSite: this.setActiveSiteId
 		};
 
 		const activeSiteValue = {
