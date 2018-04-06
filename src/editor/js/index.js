@@ -45,7 +45,7 @@ registerBlockType( 'johnwatkins/site-stats', {
         if ( attributes.excludedSites ) {
             dataAttributes['data-exclude'] = attributes.excludedSites
                 .split( ',' )
-                .map( item => item.trim() )
+                .map( item => String( Number( item.trim() ) ) )
                 .join( ',' );
         }
 
