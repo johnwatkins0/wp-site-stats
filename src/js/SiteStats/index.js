@@ -4,7 +4,7 @@ import get from 'lodash';
 import MainPane from './MainPane';
 import SiteSelector from './SiteSelector';
 
-import { Context } from '../Provider';
+import Context from '../Context';
 
 const SiteStats = ({ setActiveSiteId }) => (
 	<div className="SiteStats">
@@ -25,6 +25,8 @@ const SiteStats = ({ setActiveSiteId }) => (
 				{( state ) => (
 					<MainPane
 						{...state.siteData[state.activeSiteId]}
+						shouldRefresh={state.shouldRefresh}
+						secondsToRefresh={state.secondsToRefresh}
 					/>
 				)}
 			</Context.Consumer>
