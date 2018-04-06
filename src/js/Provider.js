@@ -19,7 +19,7 @@ class Provider extends React.Component {
 			secondsToRefresh: REFRESH_SECONDS,
 			siteData: {
 				'0': {
-					site_title: '',
+					site_title: { rendered: '' },
 					site_url: '',
 					latest_post: null,
 					latest_comment: null
@@ -87,22 +87,16 @@ class Provider extends React.Component {
 	}
 
 	render() {
-		const state = this.getState();
-
-		const appValue = {
-			...state,
-			setActiveSite: this.setActiveSiteId
-		};
-
-		const activeSiteValue = {
-			...state.siteData[state.activeSiteId],
-			activeSiteCreatedDate: state.activeSiteCreatedDate
-		};
-
 		return (
-			<AppContext.Provider value={ appValue }>
-				<ActiveSiteContext.Provider value={ activeSiteValue } >
-					<SiteStats />
+			<AppContext.Provider value={ this.state }>
+				<ActiveSiteContext.Provider
+					value={
+						this.state.activeSiteId in this.state.siteData ?
+							this.state.siteData[this.state.activeSiteId] :
+							this.state.siteData['0']
+						}
+				>
+					<SiteStats setActiveSite={this.setActiveSite} />
 				</ActiveSiteContext.Provider>
 			</AppContext.Provider>
 		);

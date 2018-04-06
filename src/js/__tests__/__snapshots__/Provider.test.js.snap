@@ -68,7 +68,9 @@ exports[`SiteSelector renders 1`] = `
         <h2
           dangerouslySetInnerHTML={
             Object {
-              "__html": "&nbsp;",
+              "__html": Object {
+                "rendered": "",
+              },
             }
           }
         />
@@ -83,17 +85,10 @@ exports[`SiteSelector renders 1`] = `
             </span>
              
             <a
-              href={undefined}
-            />
-          </div>
-          <div>
-            <span
-              className="MainPane__site-info-key"
+              href=""
             >
-              Created:
-            </span>
-             
-            April 2, 2018
+              
+            </a>
           </div>
         </div>
       </header>

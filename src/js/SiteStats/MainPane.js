@@ -9,25 +9,25 @@ import { getCommentExcerpt } from '../utils/getCommentExcerpt';
 
 export const Header = () => (
 	<ActiveSiteContext.Consumer>
-		{({ site_title, site_url, activeSiteCreatedDate }) => (
+		{( site ) => site && (
 			<header className="MainPane__header">
-				<h2 dangerouslySetInnerHTML={ { __html: site_title || '&nbsp;' } } />
+				<h2 dangerouslySetInnerHTML={ { __html: site.site_title || '&nbsp;' } } />
 				<div className="MainPane__site-info">
 					<div>
 						<span className="MainPane__site-info-key">
 							URL:
 						</span>
 						{' '}
-						<a href={site_url}>
-							{site_url}
+						<a href={site.site_url}>
+							{site.site_url}
 						</a>
 					</div>
-					{activeSiteCreatedDate && <div>
+					{site.createdDate && <div>
 						<span className="MainPane__site-info-key">
 							Created:
 						</span>
 						{' '}
-						{format( activeSiteCreatedDate, 'MMMM D, YYYY' )}
+						{format( site.createdDate, 'MMMM D, YYYY' )}
 					</div>}
 				</div>
 			</header>
@@ -50,7 +50,7 @@ export const Stat = ({ title, number = '' }) => (
 
 export const Stats = ()  => (
 	<ActiveSiteContext.Consumer>
-		{({ post_count, page_count, user_count, comment_count }) => (
+		{({ post_count, user_count, page_count, comment_count }) => (
 			<section className="MainPane__section">
 				<h3>By the Numbers</h3>
 				<div  className="MainPane__stats">

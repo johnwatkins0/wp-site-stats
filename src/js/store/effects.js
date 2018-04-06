@@ -16,7 +16,8 @@ import {
 	getSite,
 	getActiveSiteId,
 	getSitesWithNoSelfEndpoint,
-	siteHasNoSelfEndpoint
+	siteHasNoSelfEndpoint,
+	getSiteCreatedDate
 } from './selectors';
 import { SITES_REST_PATH } from '../constants';
 
@@ -99,6 +100,8 @@ const effects = {
 		}
 
 		const data = await response.json();
+		data.createdDate = getSiteCreatedDate( getState(), action.siteId );
+
 		dispatch(
 			receiveSiteData({
 				...getAllSiteData( getState() ),

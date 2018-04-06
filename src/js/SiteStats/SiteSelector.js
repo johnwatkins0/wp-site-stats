@@ -2,9 +2,9 @@ import React from 'react';
 
 import { AppContext } from '../Context';
 
-const SiteSelector = () => (
+const SiteSelector = ({ setActiveSite }) => (
 	<AppContext.Consumer>
-		{ ({ activeSiteId, sites, setActiveSite }) => (
+		{ ({ activeSiteId, sites }) => (
 			<label>
 				Sites:{' '}
 				<select

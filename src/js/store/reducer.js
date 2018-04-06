@@ -13,8 +13,7 @@ function reducer( state = {}, action = {}) {
 		case 'SET_ACTIVE_SITE_ID': {
 			return {
 				...state,
-				activeSiteId: action.siteId,
-				activeSiteCreatedDate: getSiteCreatedDate( state, action.siteId )
+				activeSiteId: action.siteId
 			};
 		}
 

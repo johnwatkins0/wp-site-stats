@@ -3,11 +3,11 @@ import React from 'react';
 import MainPane from './MainPane';
 import SiteSelector from './SiteSelector';
 
-const SiteStats = () => (
+const SiteStats = ({ setActiveSite }) => (
 	<div className="SiteStats">
 		<div className="SiteStats__header">
 			<h1>Site Stats</h1>
-			<SiteSelector />
+			<SiteSelector setActiveSite={ setActiveSite } />
 		</div>
 		<div className="SiteStats__body">
 			<MainPane />
