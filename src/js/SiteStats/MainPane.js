@@ -4,6 +4,7 @@ import format from 'date-fns/format';
 import get from 'lodash.get';
 
 import { getCommentExcerpt } from '../utils/getCommentExcerpt';
+import { Context } from '../Provider';
 
 export const Header = ({ site_title, site_url, createdDate }) => (
 	<header className="MainPane__header">

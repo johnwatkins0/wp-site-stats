@@ -9,14 +9,18 @@ import reducer from './store/reducer';
 import { getSecondsToRefresh } from './store/selectors';
 import { REFRESH_SECONDS } from './constants';
 
-const Context = React.createContext();
+export const Context = React.createContext();
 
 class Provider extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
 			sites: props.sites,
-			secondsToRefresh: REFRESH_SECONDS
+			secondsToRefresh: REFRESH_SECONDS,
+			siteData: {
+				'0': {}
+			},
+			setActiveSiteId: '0'
 		};
 		this.getState = this.getState.bind( this );
 		this.dispatch = this.dispatch.bind( this );
@@ -74,14 +78,11 @@ class Provider extends React.Component {
 	render() {
 		return (
 			<Context.Provider value={this.state}>
-				<Context.Consumer>
-					{( state ) => (
-						<SiteStats
-							state={state}
-							dispatch={this.dispatch}
-						/>
-					)}
-				</Context.Consumer>
+				<SiteStats
+					setActiveSite={( siteId ) => {
+						this.dispatch( setActiveSiteId( siteId ) );
+					}}
+				/>
 			</Context.Provider>
 		);
 	}

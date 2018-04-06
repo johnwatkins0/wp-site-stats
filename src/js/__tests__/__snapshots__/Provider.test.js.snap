@@ -86,15 +86,6 @@ exports[`SiteSelector renders 1`] = `
               href={undefined}
             />
           </div>
-          <div>
-            <span
-              className="MainPane__site-info-key"
-            >
-              Created:
-            </span>
-             
-            April 2, 2018
-          </div>
         </div>
       </header>
       <section
@@ -217,15 +208,6 @@ exports[`SiteSelector renders 1`] = `
           </a>
         </div>
       </section>
-      <footer
-        className="MainPane__footer"
-      >
-        Refreshing in 
-        60
-         second
-        s
-        .
-      </footer>
     </article>
   </div>
 </div>
