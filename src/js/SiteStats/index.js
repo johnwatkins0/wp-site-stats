@@ -11,10 +11,10 @@ const SiteStats = ({ setActiveSiteId }) => (
 		<div className="SiteStats__header">
 			<h1>Site Stats</h1>
 			<Context.Consumer>
-				{( state ) => (
+				{({ sites, activeSiteId }) => (
 					<SiteSelector
-						sites={state.sites}
-						activeSiteId={state.activeSiteId}
+						sites={sites}
+						activeSiteId={activeSiteId}
 						setActiveSite={setActiveSiteId}
 					/>
 				)}
@@ -22,11 +22,18 @@ const SiteStats = ({ setActiveSiteId }) => (
 		</div>
 		<div className="SiteStats__body">
 			<Context.Consumer>
-				{( state ) => (
+				{({
+					siteData,
+					activeSiteId,
+					shouldRefresh,
+					secondsToRefresh,
+					activeSiteCreatedDate
+					}) => (
 					<MainPane
-						{...state.siteData[state.activeSiteId]}
-						shouldRefresh={state.shouldRefresh}
-						secondsToRefresh={state.secondsToRefresh}
+						{...siteData[activeSiteId]}
+						shouldRefresh={shouldRefresh}
+						secondsToRefresh={secondsToRefresh}
+						activeSiteCreatedDate={activeSiteCreatedDate}
 					/>
 				)}
 			</Context.Consumer>

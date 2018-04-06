@@ -1,4 +1,5 @@
 import { REFRESH_SECONDS } from '../constants';
+import { getSiteCreatedDate } from './selectors';
 
 /**
  * Reducer handling all changes to app state.
@@ -12,7 +13,8 @@ function reducer( state = {}, action = {}) {
 		case 'SET_ACTIVE_SITE_ID': {
 			return {
 				...state,
-				activeSiteId: action.siteId
+				activeSiteId: action.siteId,
+				activeSiteCreatedDate: getSiteCreatedDate( state, action.siteId )
 			};
 		}
 
