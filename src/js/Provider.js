@@ -30,6 +30,7 @@ class Provider extends React.Component {
 		};
 		this.getState = this.getState.bind( this );
 		this.dispatch = this.dispatch.bind( this );
+		this.setActiveSiteId = this.setActiveSiteId.bind( this );
 		this.tick = this.tick.bind( this );
 	}
 
@@ -44,6 +45,10 @@ class Provider extends React.Component {
 
 	getState() {
 		return Object.assign({}, this.state );
+	}
+
+	setActiveSiteId( siteId ) {
+		this.dispatch( setActiveSiteId( siteId ) );
 	}
 
 	dispatch( action )  {
@@ -83,19 +88,21 @@ class Provider extends React.Component {
 
 	render() {
 		const state = this.getState();
+
+		const appValue = {
+			...state,
+			setActiveSiteId: this.setActiveSiteId
+		};
+
+		const activeSiteValue = {
+			...state.siteData[state.activeSiteId],
+			activeSiteCreatedDate: state.activeSiteCreatedDate
+		};
+
 		return (
 			<AppContext.Provider value={state}>
-				<ActiveSiteContext.Provider
-					value={ {
-						...state.siteData[state.activeSiteId],
-						activeSiteCreatedDate: state.activeSiteCreatedDate
-					}}
-				>
-					<SiteStats
-						setActiveSiteId={( siteId ) => {
-							this.dispatch( setActiveSiteId( siteId ) );
-						}}
-					/>
+				<ActiveSiteContext.Provider value={ activeSiteValue } >
+					<SiteStats />
 				</ActiveSiteContext.Provider>
 			</AppContext.Provider>
 		);

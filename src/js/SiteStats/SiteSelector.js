@@ -1,26 +1,32 @@
 import React from 'react';
 
-const SiteSelector = ({ activeSiteId, sites, setActiveSite }) => (
-	<label>
-		Sites:{' '}
-		<select
-			className="SiteSelector"
-			value={activeSiteId}
-			onChange={event => {
-				setActiveSite( event.target.value );
-			}}
-		>
+import { AppContext } from '../Context';
 
-			{sites.map( ({ id, domain, path }) => (
-				<option
-					key={id}
-					value={id}
+const SiteSelector = () => (
+	<AppContext.Consumer>
+		{ ({ activeSiteId, sites, setActiveSite }) => (
+			<label>
+				Sites:{' '}
+				<select
+					className="SiteSelector"
+					value={activeSiteId}
+					onChange={event => {
+						setActiveSite( event.target.value );
+					}}
 				>
-					{`${domain}${path}`}
-				</option>
-			) )}
-		</select>
-	</label>
+
+					{sites.map( ({ id, domain, path }) => (
+						<option
+							key={id}
+							value={id}
+						>
+							{`${domain}${path}`}
+						</option>
+					) )}
+				</select>
+			</label>
+		)}
+	</AppContext.Consumer>
 );
 
 export default SiteSelector;

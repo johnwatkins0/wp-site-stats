@@ -1,24 +1,13 @@
 import React from 'react';
-import get from 'lodash';
 
 import MainPane from './MainPane';
 import SiteSelector from './SiteSelector';
 
-import { AppContext } from '../Context';
-
-const SiteStats = ({ setActiveSiteId }) => (
+const SiteStats = () => (
 	<div className="SiteStats">
 		<div className="SiteStats__header">
 			<h1>Site Stats</h1>
-			<AppContext.Consumer>
-				{({ sites, activeSiteId }) => (
-					<SiteSelector
-						sites={sites}
-						activeSiteId={activeSiteId}
-						setActiveSite={setActiveSiteId}
-					/>
-				)}
-			</AppContext.Consumer>
+			<SiteSelector />
 		</div>
 		<div className="SiteStats__body">
 			<MainPane />
