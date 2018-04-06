@@ -3,7 +3,7 @@ const { registerBlockType, InspectorControls } = wp.blocks;
 registerBlockType( 'johnwatkins/site-stats', {
     title: 'Site Stats',
     category: 'widgets',
-    edit({ attributes, setAttributes, isSelected}) {
+    edit({ attributes, setAttributes}) {
         const { excludedSites } = attributes;
 
         const controls = (
