@@ -12,7 +12,7 @@ import { REFRESH_SECONDS } from './constants';
 import { AppContext, ActiveSiteContext } from './Context';
 
 const DEFAULT_SITE_DATA = {
-	site_title: { rendered: '' },
+	site_title: '',
 	site_url: '',
 	latest_post: null,
 	latest_comment: null

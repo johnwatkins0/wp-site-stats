@@ -68,9 +68,7 @@ exports[`SiteSelector renders 1`] = `
         <h2
           dangerouslySetInnerHTML={
             Object {
-              "__html": Object {
-                "rendered": "",
-              },
+              "__html": "&nbsp;",
             }
           }
         />
