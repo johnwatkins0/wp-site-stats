@@ -90,11 +90,8 @@ class Provider extends React.Component {
 		return (
 			<AppContext.Provider value={ this.state }>
 				<ActiveSiteContext.Provider
-					value={
-						this.state.activeSiteId in this.state.siteData ?
-							this.state.siteData[this.state.activeSiteId] :
-							this.state.siteData['0']
-						}
+					value={ this.state.siteData[this.state.activeSiteId] ||
+						this.state.siteData['0'] }
 				>
 					<SiteStats setActiveSite={this.setActiveSite} />
 				</ActiveSiteContext.Provider>
