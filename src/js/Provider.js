@@ -11,19 +11,23 @@ import { getSecondsToRefresh } from './store/selectors';
 import { REFRESH_SECONDS } from './constants';
 import { AppContext, ActiveSiteContext } from './Context';
 
+const DEFAULT_SITE_DATA = {
+	site_title: { rendered: '' },
+	site_url: '',
+	latest_post: null,
+	latest_comment: null
+};
+
 class Provider extends React.Component {
+
+
 	constructor( props ) {
 		super( props );
 		this.state = {
 			sites: props.sites,
 			secondsToRefresh: REFRESH_SECONDS,
 			siteData: {
-				'0': {
-					site_title: { rendered: '' },
-					site_url: '',
-					latest_post: null,
-					latest_comment: null
-				}
+				'0': DEFAULT_SITE_DATA
 			},
 			activeSiteId: '0',
 			shouldRefresh: true
@@ -91,9 +95,9 @@ class Provider extends React.Component {
 			<AppContext.Provider value={ this.state }>
 				<ActiveSiteContext.Provider
 					value={ this.state.siteData[this.state.activeSiteId] ||
-						this.state.siteData['0'] }
+						DEFAULT_SITE_DATA }
 				>
-					<SiteStats setActiveSite={this.setActiveSite} />
+					<SiteStats setActiveSite={this.setActiveSiteId} />
 				</ActiveSiteContext.Provider>
 			</AppContext.Provider>
 		);
