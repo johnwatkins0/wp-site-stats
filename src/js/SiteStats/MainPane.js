@@ -109,7 +109,7 @@ export const LatestComment = () => (
 
 export const Footer = () => (
 	<AppContext.Consumer>
-		{ ( { shouldRefresh, secondsToRefresh } ) => {
+		{({ shouldRefresh, secondsToRefresh }) => {
 			if ( ! shouldRefresh ) {
 				return null;
 			}

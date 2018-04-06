@@ -13,14 +13,16 @@ import sites from '../../test-data/sites.json';
 import siteData from '../../test-data/activeSite.json';
 
 const mockState = {
-	sites,
+	app: {
+		sites,
+		activeSiteId: sites[0].id,
+		shouldRefresh: true,
+		secondsToRefresh: 45
+	},
 	siteData: {
 		444: { foo: 'bar' },
 		[sites[0].id]: siteData
-	},
-	activeSiteId: sites[0].id,
-	shouldRefresh: true,
-	secondsToRefresh: 45
+	}
 };
 
 test( 'getSite selector', () => {
@@ -52,12 +54,6 @@ test( 'getAllSiteData selector', () => {
 	);
 });
 
-test( 'getSiteData selector', () => {
-	expect(
-		getSiteData( mockState, sites[0].id )
-	).toMatchObject( siteData );
-});
-
 test( 'getActiveSiteId selector', () => {
 	expect(
 		getActiveSiteId( mockState )
@@ -67,7 +63,7 @@ test( 'getActiveSiteId selector', () => {
 test( 'getSiteCreatedDate selector', () => {
 	expect(
 		getSiteCreatedDate( mockState, sites[0].id )
-	).toBe( mockState.sites[0].registered );
+	).toBe( mockState.app.sites[0].registered );
 });
 
 test( 'getSecondsToRefresh selector', () => {

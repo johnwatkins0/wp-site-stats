@@ -30,7 +30,9 @@ describe( 'reducer', () => {
 			)
 		).toMatchObject(
 			{
-				activeSiteId: 666
+				app: {
+					activeSiteId: 666
+				}
 			}
 		);
 	});
@@ -56,7 +58,11 @@ describe( 'reducer', () => {
 					secondsToRefresh: 45
 				}
 			)
-		).toMatchObject({ secondsToRefresh: 45 });
+		).toMatchObject({
+			app: {
+				secondsToRefresh: 45
+			}
+		});
 	});
 
 	it( 'handles SET_SITES_WITH_NO_SELF_ENDPOINT', () => {
@@ -68,7 +74,11 @@ describe( 'reducer', () => {
 					noSelfEndpointSites: [ 4, 5, 77 ]
 				}
 			)
-		).toMatchObject({ noSelfEndpointSites: [ 4, 5, 77 ] });
+		).toMatchObject({
+			app: {
+				noSelfEndpointSites: [ 4, 5, 77 ]
+			}
+		});
 	});
 
 	it ( 'handles SET_SHOULD_REFRESH', () => {
@@ -80,6 +90,10 @@ describe( 'reducer', () => {
 					shouldRefresh: true
 				}
 			)
-		).toMatchObject({ shouldRefresh: true });
+		).toMatchObject({
+			app: {
+				shouldRefresh: true
+			}
+		});
 	});
 });

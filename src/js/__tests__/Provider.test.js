@@ -27,7 +27,7 @@ describe( 'SiteSelector', () => {
         );
 
         setTimeout( () => {
-            expect( wrapper.state().secondsToRefresh ).toEqual( 59 );
+            expect( wrapper.state().app.secondsToRefresh ).toEqual( 59 );
             done();
         }, 1001 );
     });
@@ -42,7 +42,7 @@ describe( 'SiteSelector', () => {
         wrapper.setState({ shouldRefresh: false });
 
         setTimeout( () => {
-            expect( wrapper.state().secondsToRefresh ).toEqual( 60 );
+            expect( wrapper.state().app.secondsToRefresh ).toEqual( 60 );
             done();
         }, 1001 );
     });

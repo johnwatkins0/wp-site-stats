@@ -9,7 +9,7 @@ import find from 'lodash.find';
  * @return {Object|undefined} The found site or undefined.
  */
 export const getSite = ( state, siteId ) =>
-	find( get( state, 'sites', []), { id: siteId }) || {};
+	find( get( state, [ 'app', 'sites' ], []), { id: siteId }) || {};
 
 /**
  * Gets the sites array.
@@ -18,7 +18,7 @@ export const getSite = ( state, siteId ) =>
  * @return {array} The sites.
  */
 export const getSites = ( state ) =>
-	get( state, 'sites', []);
+	get( state, [ 'app', 'sites' ], []);
 
 /**
  * Gets the object holding saved site data.
@@ -30,23 +30,13 @@ export const getAllSiteData = ( state ) =>
 	get( state, 'siteData', {});
 
 /**
- * Gets data for a specified site.
- *
- * @param {Object} state A state object.
- * @param {number|string} siteId A numeric site ID.
- * @return {Object} The retreieved site data if it exists.
- */
-export const getSiteData = ( state, siteId ) =>
-	get( state, [ 'siteData', siteId ], {});
-
-/**
  * Gets the ID of the currently active site.
  *
  * @param {Object} state A state object.
  * @return {number} The active site ID.
  */
 export const getActiveSiteId = ( state ) =>
-	get( state, 'activeSiteId', 0 );
+	get( state, [ 'app', 'activeSiteId' ], 0 );
 
 /**
  * Gets the date a site was created.
@@ -65,7 +55,7 @@ export const getSiteCreatedDate = ( state, siteId ) =>
  * @return {array} The list of sites.
  */
 export const getSitesWithNoSelfEndpoint = ( state ) =>
-	get( state, 'noSelfEndpointSites', []);
+	get( state, [ 'app', 'noSelfEndpointSites' ], []);
 
 /**
  * Returns whether a site is known to have no self endpoint.
@@ -84,7 +74,7 @@ export const siteHasNoSelfEndpoint = ( state, siteId ) =>
  * @return The number of seconds.
  */
 export const getSecondsToRefresh = ( state ) =>
-	get( state, 'secondsToRefresh' );
+	get( state, [ 'app', 'secondsToRefresh' ]);
 
 
 /**
@@ -94,4 +84,4 @@ export const getSecondsToRefresh = ( state ) =>
  * @return {bool} Yes or no.
  */
 export const getShouldRefresh = ( state ) =>
-	get( state, 'shouldRefresh', true );
+	get( state, [ 'app', 'shouldRefresh' ], true );

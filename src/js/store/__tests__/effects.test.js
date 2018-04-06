@@ -115,7 +115,9 @@ describe( 'effects', () => {
 				{
 					dispatch,
 					getState: () => ({
-						noSelfEndpointSites: [ sites[0].id ]
+						app: {
+							noSelfEndpointSites: [ sites[0].id ]
+						}
 					})
 				}
 			);
@@ -237,7 +239,9 @@ describe( 'effects', () => {
 				{
 					dispatch,
 					getState: () => ({
-						activeSiteId: '1'
+						app: {
+							activeSiteId: '1'
+						}
 					})
 				}
 			);
@@ -258,7 +262,9 @@ describe( 'effects', () => {
 				{
 					dispatch,
 					getState: () => ({
-						noSelfEndpointSites: [ 44 ]
+						app: {
+							noSelfEndpointSites: [ 44 ]
+						}
 					})
 				}
 			);

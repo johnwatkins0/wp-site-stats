@@ -13,36 +13,51 @@ function reducer( state = {}, action = {}) {
 		case 'SET_ACTIVE_SITE_ID': {
 			return {
 				...state,
-				activeSiteId: action.siteId
+				app: {
+					...state.app,
+					activeSiteId: action.siteId
+				}
 			};
 		}
 
 		case 'RECEIVE_SITE_DATA': {
 			return {
 				...state,
-				siteData: action.data,
-				secondsToRefresh: REFRESH_SECONDS
+				app: {
+					...state.app,
+					secondsToRefresh: REFRESH_SECONDS
+				},
+				siteData: action.data
 			};
 		}
 
 		case 'SET_REFRESH_TIMER': {
 			return {
 				...state,
-				secondsToRefresh: action.secondsToRefresh
+				app: {
+					...state.app,
+					secondsToRefresh: action.secondsToRefresh
+				}
 			};
 		}
 
 		case 'SET_SITES_WITH_NO_SELF_ENDPOINT': {
 			return {
 				...state,
-				noSelfEndpointSites: action.noSelfEndpointSites
+				app: {
+					...state.app,
+					noSelfEndpointSites: action.noSelfEndpointSites
+				}
 			};
 		}
 
 		case 'SET_SHOULD_REFRESH': {
 			return {
 				...state,
-				shouldRefresh: action.shouldRefresh
+				app: {
+					...state.app,
+					shouldRefresh: action.shouldRefresh
+				}
 			};
 		}
 	}

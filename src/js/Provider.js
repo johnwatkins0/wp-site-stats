@@ -22,13 +22,15 @@ class Provider extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			sites: props.sites,
-			secondsToRefresh: REFRESH_SECONDS,
+			app: {
+				sites: props.sites,
+				secondsToRefresh: REFRESH_SECONDS,
+				activeSiteId: '0',
+				shouldRefresh: true
+			},
 			siteData: {
 				'0': DEFAULT_SITE_DATA
-			},
-			activeSiteId: '0',
-			shouldRefresh: true
+			}
 		};
 		this.getState = this.getState.bind( this );
 		this.dispatch = this.dispatch.bind( this );
@@ -90,9 +92,9 @@ class Provider extends React.Component {
 
 	render() {
 		return (
-			<AppContext.Provider value={ this.state }>
+			<AppContext.Provider value={ this.state.app }>
 				<ActiveSiteContext.Provider
-					value={ this.state.siteData[this.state.activeSiteId] ||
+					value={ this.state.siteData[this.state.app.activeSiteId] ||
 						DEFAULT_SITE_DATA }
 				>
 					<SiteStats setActiveSite={this.setActiveSiteId} />
