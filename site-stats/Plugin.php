@@ -1,6 +1,6 @@
 <?php
 /**
- * Site_Stats.php
+ * Plugin.php
  *
  * @package johnwatkins/site-stats
  */
