@@ -1,5 +1,5 @@
 {
-  "name": "colbycomms/wp-schedule",
+  "name": "johnwatkins0/wp-site-stats",
   "description": "A WordPress plugin providing a frontend widget showing stats about sites in a multisite network.",
   "type": "library",
   "scripts": {
